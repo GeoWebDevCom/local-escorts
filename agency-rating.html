@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
-<title>Local Escorts - Страница пользователя</title>
+<title>Local Escorts - Агентство</title>
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
@@ -25,6 +25,28 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <link rel="icon" href="favicon.ico">
+
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/jquery.mCustomScrollbar.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/jquery-ias.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.liblink.js"></script>
+<script src="js/wNumb.min.js"></script>
+<script src="js/jquery.nouislider.min.js"></script>
+<script src="js/masked.input.js"></script>
+<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+<script src="js/slick.min.js"></script>
+
+<!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
+
+<script src="js/scripts.js"></script>
+
 
 </head>
 
@@ -943,10 +965,10 @@
 					<div class="user-badge-wrapper">
 						<div class="user-badge" role="button" data-toggle="popover">
 							<div class="userpic">
-								<img src="files/userpic.jpg" />
+								<img src="files/agency-userpic.jpg" />
 							</div>
 							<div class="username">
-								Angelica Superstar
+								Eve Agency
 								<div class="model-badge-credits">
 									На счету: 1250 кредитов
 								</div>
@@ -963,16 +985,12 @@
 								<div role="tabpanel" class="tab-pane active" id="usermenu_profile">
 									<div class="popover-profile-menu">
 										<a href="#">
-											<div class="ico ico-watch"></div>
-											Наблюдаю: <span>56</span>
+											<div class="ico ico-profile"></div>
+											Профиль агентства
 										</a>
 										<a href="#">
-											<div class="ico ico-likes"></div>
-											Лайкнул: <span>1274</span>
-										</a>
-										<a href="#">
-											<div class="ico ico-reviews"></div>
-											Оставил отзыв: <span>38</span>
+											<div class="ico ico-balance"></div>
+											Пополнить баланс
 										</a>
 										<a href="#">
 											<div class="ico ico-settings"></div>
@@ -980,7 +998,7 @@
 										</a>
 										<a href="#">
 											<div class="ico ico-invite"></div>
-											Пригласить друзей
+											Пригласить моделей
 										</a>
 										<a href="#" class="popover-profile-exit">
 											Выйти
@@ -1043,240 +1061,328 @@
 		
 		<!-- Шапка END -->
 		
-		<!-- Шапка страницы модели -->
+		<!-- Шапка страницы агентства -->
 		
-		<div class="model-page-header">
-			<div class="model-page-header-userpic">
-				<img src="files/model-page-userpic.jpg"/>
-			</div>
-			<div class="model-page-header-top clearfix">
-				<div class="model-page-header-name">
-					Angelica Superstar
+		<div class="agency-page-header">
+			<div class="agency-page-header-pic" style="background-image:url(files/agency-pic.jpg)"></div>
+			<div class="agency-page-header-top clearfix">
+				<div class="agency-page-header-userpic">
+					<img src="files/agency-userpic.jpg"/>
 				</div>
-				<div class="rating model-page-header-rating clearfix">
-					<div class="rating-star rating-star-act"></div>
-					<div class="rating-star rating-star-act"></div>
-					<div class="rating-star rating-star-act"></div>
-					<div class="rating-star"></div>
-					<div class="rating-star"></div>
+				<div class="agency-page-header-name">
+					Eve Agency
 				</div>
-				<div class="button button-edit">Редактировать</div>
+				<div class="agency-page-header-rating-wrapper clearfix">
+					<div class="rating agency-page-header-rating clearfix">
+						<div class="rating-star rating-star-act"></div>
+						<div class="rating-star rating-star-act"></div>
+						<div class="rating-star rating-star-act"></div>
+						<div class="rating-star"></div>
+						<div class="rating-star"></div>
+					</div>
+					<div class="agency-page-header-rating-val">
+						3,5
+					</div>
+				</div>
 			</div>
-			<div class="model-page-header-bottom clearfix">
-				<div class="model-page-menu-wrapper">
-					<ul class="model-page-menu">
-						<li><a href="#">Профиль</a></li>
-						<li><a href="#">Наблюдатели: 59890</a></li>
-						<li><a href="#">Лайки: 9909</a></li>
-						<li><a href="#">Отзывы: 30</a></li>
-						<li><a href="#" class="active">Комментарии: 1890</a></li>
-						<li><a href="#">Просмотры: 567980</a></li>
-						<li><a href="#">Реклама анкеты</a></li>
-					</ul>
+			<div class="agency-page-header-middle clearfix">
+				<div class="button button-follow-2"><strong>Follow</strong> (61734)</div>
+				<div class="agency-page-header-phone">+7 (495) 343-34-32</div>
+				<div class="agency-page-header-address">Россия, Москва, м. Третьяковская</div>
+				<div class="agency-page-header-site"><a href="#">www.eve-agency.com</a></div>
+				<a href="#" class="button button-edit">Редактировать</a>
+			</div>
+			<div class="agency-page-header-bottom clearfix">
+				<div class="agency-menu-over-wrapper">
+					<div class="agency-page-menu-wrapper">
+						<ul class="agency-page-menu">
+							<li><a href="#">Модели: 10</a></li>
+							<li><a href="#" class="active">Рейтинг: 3</a></li>
+							<li><a href="#">Отзывы: 30</a></li>
+							<li><a href="#">Комментарии: 1890</a></li>
+							<li><a href="#">Лайки: 9909</a></li>
+							<li><a href="#">Просмотры: 567980</a></li>
+							<li><a href="#">Наблюдатели: 59890</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="agency-page-menu-more-trigger">
+					<span>Еще</span>
+				</div>
+			</div>
+			<div class="agency-more clearfix">
+				<div class="col">
+					<p>Центр Models Katalog - это агентство элитного сопровождения для клиентов, знающих цену времени, деньгам и женской красоте! Через наше эскорт агентство  Angel вы сможете найти восхитительную спутницу, которая всегда будет для вас в отличном настроении, всегда сможет выехать с вами на вечеринку или деловой фуршет.</p>
+				</div>
+				<div class="col">
+					<p>Устроит для вас незабываемые романтические вечера в дороге и вообще составит хорошую компанию везде и всегда. Обаяние, ум, сообразительность и прекрасный внешний вид: что ещё требуется от девушки, которая будет с вами?</p>
 				</div>
 			</div>
 		</div>
 		
-		<!-- Шапка страницы модели END -->
+		<!-- Шапка страницы агентства END -->
 		
 		<!-- Контент страницы -->
 		
 		<div class="page-content">
+			<h1>Сортировка по рейтингу:</h1>
 			
-			<h1>Всего комментариев: 21</h1>
-			
-			<div class="model-comments model-page-comments">
-				
-				<div class="comments-item">
-					<div class="comments-controls">
-						<div class="clearfix">
-							<a href="#" class="comments-controls-item reply-link"><span>Ответить</span></a>
-							<a href="#" class="comments-controls-item remove-link"><span>Удалить</span></a>
-						</div>
+			<div class="models-list">
+				<div class="models-list-item clearfix">
+					<div class="models-list-item-pic">
+						<img src="files/model-userpic-1.jpg"/>
 					</div>
-					<div class="comment-content clearfix">
-						<div class="comment-userpic">
-							<img src="files/comment-userpic.jpg"/>
+					<div class="models-list-item-descr">
+						<div class="models-list-item-name-rating clearfix">
+							<div class="models-list-item-name">
+								Мариночка
+							</div>
+							<div class="rating models-list-item-rating clearfix">
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+							</div>
+							<div class="models-list-item-rating-val">
+								3,5
+							</div>
 						</div>
-						<div class="comment-body">
-							<div class="comment-username">
-								Виктор Смирнов
-							</div>
-							<div class="comment-text">
-								<p>Очаровательная, эффектная девушка с фигурой, которой позавидовали бы многие красавицы!  Такая же индивидуальная, яркая и неповторимая! Девушка прекрасна и профессиональна, легка в общении. Впечатлен всеми видами волшебного отдыха.</p>
-							</div>
-						</div>
-					</div>
-					
-					<div class="comments-item">
-						<div class="comment-content clearfix">
-							<div class="comment-userpic">
-								<img src="files/comment-userpic.jpg"/>
-							</div>
-							<div class="comment-body">
-								<div class="comment-username">
-									Angelica Superstar
+						<ul class="models-list-item-info clearfix">
+							<li>
+								3 000 р./час
+							</li>
+							<li>
+								Возраст: 24
+							</li>
+							<li>
+								Агентство
+							</li>
+							<li>
+								Эскорт
+							</li>
+							<li>
+								Русская
+							</li>
+							<li>
+								<div class="cat-work-location">
+									<div class="cat-work-location-item cat-work-location-item-out">Выезд</div>
+									<div class="cat-work-location-item cat-work-location-item-in">Прием</div>
 								</div>
-								<div class="comment-text">
-									<p>Столько комплиментов, приходи еще :)</p>
+							</li>
+							<li>
+								<div class="cat-languages">
+									<div class="cat-languages-item cat-languages-item-ru">Ru</div>
+									<div class="cat-languages-item cat-languages-item-en">En</div>
 								</div>
-							</div>
-						</div>
+							</li>
+						</ul>
 					</div>
-					
 				</div>
-				
-				<div class="comments-item">
-					<div class="comments-controls">
-						<div class="clearfix">
-							<a href="#" class="comments-controls-item reply-link"><span>Ответить</span></a>
-							<a href="#" class="comments-controls-item remove-link"><span>Удалить</span></a>
-						</div>
+				<div class="models-list-item clearfix">
+					<div class="models-list-item-pic">
+						<img src="files/model-userpic-2.jpg"/>
 					</div>
-
-					<div class="comment-content clearfix">
-						<div class="comment-userpic">
-							<img src="files/comment-userpic.jpg"/>
+					<div class="models-list-item-descr">
+						<div class="models-list-item-name-rating clearfix">
+							<div class="models-list-item-name">
+								Anastasia Kim
+							</div>
+							<div class="rating models-list-item-rating clearfix">
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star"></div>
+							</div>
+							<div class="models-list-item-rating-val">
+								3,5
+							</div>
 						</div>
-						<div class="comment-body">
-							<div class="comment-username">
-								Bad-Boy
-							</div>
-							<div class="comment-text">
-								<p>Был на той неделе. Все хорошо, но чувствуется усталость... </p>
-							</div>
-						</div>
-					</div>
-					
-					<div class="comments-item">
-						<div class="comment-content clearfix">
-							<div class="comment-userpic">
-								<img src="files/comment-userpic.jpg"/>
-							</div>
-							<div class="comment-body">
-								<div class="comment-username">
-									Angelica Superstar
+						<ul class="models-list-item-info clearfix">
+							<li>
+								3 000 р./час
+							</li>
+							<li>
+								Возраст: 24
+							</li>
+							<li>
+								Агентство
+							</li>
+							<li>
+								Эскорт
+							</li>
+							<li>
+								Русская
+							</li>
+							<li>
+								<div class="cat-work-location">
+									<div class="cat-work-location-item cat-work-location-item-out">Выезд</div>
+									<div class="cat-work-location-item cat-work-location-item-in">Прием</div>
 								</div>
-								<div class="comment-text">
-									<p>Не люблю тюленей ...</p>
+							</li>
+							<li>
+								<div class="cat-languages">
+									<div class="cat-languages-item cat-languages-item-ru">Ru</div>
+									<div class="cat-languages-item cat-languages-item-en">En</div>
 								</div>
-							</div>
-						</div>
+							</li>
+						</ul>
 					</div>
-					
 				</div>
-				
-				<div class="comments-item">
-					<div class="comments-controls">
-						<div class="clearfix">
-							<a href="#" class="comments-controls-item reply-link"><span>Ответить</span></a>
-							<a href="#" class="comments-controls-item remove-link"><span>Удалить</span></a>
-						</div>
+				<div class="models-list-item clearfix">
+					<div class="models-list-item-pic">
+						<img src="files/model-userpic-3.jpg"/>
 					</div>
-					<div class="comment-content clearfix">
-						<div class="comment-userpic">
-							<img src="files/comment-userpic.jpg"/>
-						</div>
-						<div class="comment-body">
-							<div class="comment-username">
-								Виктор Смирнов
+					<div class="models-list-item-descr">
+						<div class="models-list-item-name-rating clearfix">
+							<div class="models-list-item-name">
+								Мила
 							</div>
-							<div class="comment-text">
-								<p>Девушка прекрасна и профессиональна, легка в общении. Отношение к гостю чудесное. Впечатлен всеми видами волшебного отдыха. Сказка незабываемая!</p>
+							<div class="rating models-list-item-rating clearfix">
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star"></div>
+								<div class="rating-star"></div>
 							</div>
-						</div>
-					</div>
-					
-				</div>
-				
-				<div class="comments-item">
-					<div class="comments-controls">
-						<div class="clearfix">
-							<a href="#" class="comments-controls-item reply-link"><span>Ответить</span></a>
-							<a href="#" class="comments-controls-item remove-link"><span>Удалить</span></a>
-						</div>
-					</div>
-					<div class="comment-content clearfix">
-						<div class="comment-userpic">
-							<img src="files/comment-userpic.jpg"/>
-						</div>
-						<div class="comment-body">
-							<div class="comment-username">
-								Bad-Boy
-							</div>
-							<div class="comment-text">
-								<p>Все супер, но есть одна ложка дегтя. Девушка очень вспыльчивая. Ни с того ни с сего у неё может испортиться настроение и она испортит его Вам. Любая мелочь может вывести её из настроения. Если этого не случится, то вы 100% уйдете довольными. Секс отличнейший. Отношение к клиенту супер (опять же, если внезапно не взорвется). Лично я больше к ней не приду из-за этой неприятной особенности.</p>
+							<div class="models-list-item-rating-val">
+								3,5
 							</div>
 						</div>
-					</div>
-					
-					<div class="comments-item">
-						<div class="comment-content clearfix">
-							<div class="comment-userpic">
-								<img src="files/comment-userpic.jpg"/>
-							</div>
-							<div class="comment-body">
-								<div class="comment-username">
-									Angelica Superstar
+						<ul class="models-list-item-info clearfix">
+							<li>
+								3 000 р./час
+							</li>
+							<li>
+								Возраст: 24
+							</li>
+							<li>
+								Агентство
+							</li>
+							<li>
+								Эскорт
+							</li>
+							<li>
+								Русская
+							</li>
+							<li>
+								<div class="cat-work-location">
+									<div class="cat-work-location-item cat-work-location-item-out">Выезд</div>
+									<div class="cat-work-location-item cat-work-location-item-in">Прием</div>
 								</div>
-								<div class="comment-text">
-									<p>Спасибки!! Я стараюсь для вас)</p>
+							</li>
+							<li>
+								<div class="cat-languages">
+									<div class="cat-languages-item cat-languages-item-ru">Ru</div>
+									<div class="cat-languages-item cat-languages-item-en">En</div>
 								</div>
-							</div>
-						</div>
+							</li>
+						</ul>
 					</div>
-					
 				</div>
-				
-				<div class="comments-item">
-					<div class="comments-controls">
-						<div class="clearfix">
-							<a href="#" class="comments-controls-item reply-link"><span>Ответить</span></a>
-							<a href="#" class="comments-controls-item remove-link"><span>Удалить</span></a>
-						</div>
+				<div class="models-list-item clearfix">
+					<div class="models-list-item-pic">
+						<img src="files/model-userpic-4.jpg"/>
 					</div>
-					<div class="comment-content clearfix">
-						<div class="comment-userpic">
-							<img src="files/comment-userpic.jpg"/>
-						</div>
-						<div class="comment-body">
-							<div class="comment-username">
-								Виктор Смирнов
+					<div class="models-list-item-descr">
+						<div class="models-list-item-name-rating clearfix">
+							<div class="models-list-item-name">
+								Angeliсa
 							</div>
-							<div class="comment-text">
-								<p>Девушка прекрасна и профессиональна, легка в общении. Отношение к гостю чудесное. Впечатлен всеми видами волшебного отдыха. Сказка незабываемая!</p>
+							<div class="rating models-list-item-rating clearfix">
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star"></div>
+								<div class="rating-star"></div>
+								<div class="rating-star"></div>
+							</div>
+							<div class="models-list-item-rating-val">
+								3,5
 							</div>
 						</div>
+						<ul class="models-list-item-info clearfix">
+							<li>
+								3 000 р./час
+							</li>
+							<li>
+								Возраст: 24
+							</li>
+							<li>
+								Агентство
+							</li>
+							<li>
+								Эскорт
+							</li>
+							<li>
+								Русская
+							</li>
+							<li>
+								<div class="cat-work-location">
+									<div class="cat-work-location-item cat-work-location-item-out">Выезд</div>
+									<div class="cat-work-location-item cat-work-location-item-in">Прием</div>
+								</div>
+							</li>
+							<li>
+								<div class="cat-languages">
+									<div class="cat-languages-item cat-languages-item-ru">Ru</div>
+									<div class="cat-languages-item cat-languages-item-en">En</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-					
 				</div>
-				
-				<div class="comments-item">
-					<div class="comments-controls">
-						<div class="clearfix">
-							<a href="#" class="comments-controls-item reply-link"><span>Ответить</span></a>
-							<a href="#" class="comments-controls-item remove-link"><span>Удалить</span></a>
-						</div>
+				<div class="models-list-item clearfix">
+					<div class="models-list-item-pic">
+						<img src="files/model-userpic-5.jpg"/>
 					</div>
-					<div class="comment-content clearfix">
-						<div class="comment-userpic">
-							<img src="files/comment-userpic.jpg"/>
-						</div>
-						<div class="comment-body">
-							<div class="comment-username">
-								Bad-Boy
+					<div class="models-list-item-descr">
+						<div class="models-list-item-name-rating clearfix">
+							<div class="models-list-item-name">
+								Мариночка
 							</div>
-							<div class="comment-text">
-								<p>Чудеснейшая Кроха ! Фото снова не передаёт её очарования :(:( А всё потому, что не сделала фотосессию, как я ей рекомендовал :) Её так и хочется затискать -зацеловать -занежить-за..-за.. Бездна обаяния, очарования и оооочень секси !</p>
+							<div class="rating models-list-item-rating clearfix">
+								<div class="rating-star rating-star-act"></div>
+								<div class="rating-star"></div>
+								<div class="rating-star"></div>
+								<div class="rating-star"></div>
+								<div class="rating-star"></div>
+							</div>
+							<div class="models-list-item-rating-val">
+								3,5
 							</div>
 						</div>
+						<ul class="models-list-item-info clearfix">
+							<li>
+								3 000 р./час
+							</li>
+							<li>
+								Возраст: 24
+							</li>
+							<li>
+								Агентство
+							</li>
+							<li>
+								Эскорт
+							</li>
+							<li>
+								Русская
+							</li>
+							<li>
+								<div class="cat-work-location">
+									<div class="cat-work-location-item cat-work-location-item-out">Выезд</div>
+									<div class="cat-work-location-item cat-work-location-item-in">Прием</div>
+								</div>
+							</li>
+							<li>
+								<div class="cat-languages">
+									<div class="cat-languages-item cat-languages-item-ru">Ru</div>
+									<div class="cat-languages-item cat-languages-item-en">En</div>
+								</div>
+							</li>
+						</ul>
 					</div>
-					
 				</div>
-				
-			</div>
-			<div class="load-more-wrapper">
-				<a href="#" class="load-more-link"><span>Загрузить еще комментарии</span></a>
 			</div>
 			
 		</div>
@@ -1308,26 +1414,6 @@
 		</div>
 	</div>
 </div>
-
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
-<script src="js/jquery.mousewheel.min.js"></script>
-<script src="js/jquery.mCustomScrollbar.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js"></script>
-<script src="js/jquery-ias.min.js"></script>
-<script src="js/masonry.pkgd.min.js"></script>
-<script src="js/jquery.liblink.js"></script>
-<script src="js/wNumb.min.js"></script>
-<script src="js/jquery.nouislider.min.js"></script>
-<script src="js/masked.input.js"></script>
-<script src="js/fancybox/jquery.fancybox.pack.js"></script>
-<script src="js/slick.min.js"></script>
-
-<!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
-
-<script src="js/scripts.js"></script>
 
 </body>
 </html>

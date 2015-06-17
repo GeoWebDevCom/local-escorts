@@ -28,7 +28,8 @@ $(window).load(function() {
 
 $(document).ready(function() {
   
-	makeUp()
+	makeUp();
+	
 	
 	$(".sidebar-content").mCustomScrollbar();
 	$(".cat-filter-ext-content").mCustomScrollbar();
@@ -36,6 +37,26 @@ $(document).ready(function() {
 	$(".cat-filter-sort-list").mCustomScrollbar();
 	$(".settings-content").mCustomScrollbar();
 	$(".location-selector-col-content").mCustomScrollbar();
+	
+	// Разворачивание отзывов в списке моделей
+	
+	$("body").on("click",".models-list-expandable-trigger",function() {
+		if (!$(this).hasClass("active")) {
+			$(this).find(".trigger-text").html($(this).find(".trigger-text").data("collapsetext"))
+		} else {
+			$(this).find(".trigger-text").html($(this).find(".trigger-text").data("expandtext"))
+		}
+		$(this).toggleClass("active");
+		$(this).next(".models-list-block-expandable").slideToggle(400);
+		
+	})
+	
+	// Инфо об агентстве
+	
+	$(".agency-page-menu-more-trigger").on("click",function() {
+		$(this).toggleClass("active");
+		$(".agency-more").slideToggle(250);
+	});
 	
 	// Навигация в профиле пользователя
 	
@@ -407,6 +428,26 @@ $(document).ready(function() {
 		},1000)
 	})
 	
+	// Поповеры в шапке
+	
+	$("html").on("mouseup", function(e) {
+    if(!$(e.target).parents(".popover").length) {
+			$(".popover").each(function(){
+				$("[aria-describedby='"+$(this).attr("id")+"']").popover("hide");
+			});
+    }
+	});
+	
+	$(".menu-selector-trigger").popover({
+		trigger: "click",
+		placement: "bottom",
+		html: true,
+		content: function() {
+      return $(this).next('.popover-cont').html();
+    },
+		template: '<div class="popover menu-selector-popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>'
+	})
+	
 	// Поповеры в верхних объявлениях
 	
 	$(".header-promo-item .piclink").popover({
@@ -420,13 +461,7 @@ $(document).ready(function() {
 		template: '<div class="popover promo-popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>'
 	})
 	
-	$("html").on("mouseup", function(e) {
-    if(!$(e.target).closest(".popover").length) {
-			$(".popover").each(function(){
-				$("[aria-describedby='"+$(this).attr("id")+"']").popover("hide");
-			});
-    }
-	});
+	
 	
 	// Поповер пользователя
 	
@@ -576,7 +611,7 @@ function modelPopupInit() {
 	
 	// google.maps.event.addDomListener(window, 'load', initModelMap);
 	
-	initModelMap();
+	//initModelMap();
 	
 	var $catContainer = $(".model-popup .catalogue");
 	
