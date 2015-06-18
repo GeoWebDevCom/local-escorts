@@ -24,12 +24,64 @@ $(window).scroll(function() {
 
 $(window).load(function() {
   makeUp()
-})
+});
 
 $(document).ready(function() {
-  
+	
 	makeUp();
 	
+	if ($(".catalogue").length) {
+		
+		// Вывод каталога, если есть статические карточки моделей на странице
+	
+		var $catContainer = $(".catalogue");
+		
+		$(".catalogue").css({
+			opacity: 0
+		});
+		
+		$catContainer.imagesLoaded( function() {
+			$catContainer.masonry({
+				itemSelector: '.catalogue-item',
+				gutter: 10,
+				isFitWidth: true,
+				isInitLayout: false
+			});
+			
+			$.when( $catContainer.masonry('layout') ).done(function(x) { 
+				if ($(".catalogue-item").length) {
+					$(".catalogue").animate({
+						opacity: 1
+					},500)
+				}
+			});
+			
+		});
+		
+		
+		// URL каталога для начальной загрузки
+		
+		var itemsUrl = "../load/catalogue.js";
+		
+		// Если на странице нет элементов каталога, добавляем и выводим их.
+		// Второй параметр функции = true
+		
+		if (!$(".catalogue-item").length) {
+			appendItems(itemsUrl,true);
+		}
+		
+		$(window).scroll(function() {
+			
+			scrollPos = $(window).scrollTop();
+			
+			if (scrollPos > ($(document).height() - $(window).height() - 200)) {
+				appendItems(itemsUrl,false);
+			}
+			
+		})
+		
+	
+	}
 	
 	$(".sidebar-content").mCustomScrollbar();
 	$(".cat-filter-ext-content").mCustomScrollbar();
@@ -83,54 +135,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	// Вывод каталога плиткой
-	
-	var $catContainer = $(".catalogue");
-	
-	$(".catalogue-item").css({
-		opacity: 0
-	})
-	
-	$catContainer.imagesLoaded( function() {
-		$catContainer.masonry({
-			itemSelector: '.catalogue-item',
-			gutter: 10,
-			isFitWidth: true,
-			isInitLayout: false
-		});
-		
-		$.when( $catContainer.masonry('layout') ).done(function(x) { 
-			$(".catalogue-item").animate({
-				opacity: 1
-			},500)
-		});
-		
-	});
-	
-	
-	
-	// Бесконечный скролл каталога
-	
-	var ias = $.ias({
-		container: ".catalogue",
-		item: ".catalogue-item",
-		pagination: "#pagination",
-		next: ".next a"
-	});
-
-	ias.on('render', function(items) {
-		$(items).css({ opacity: 0 });
-	});
-
-	ias.on('rendered', function(items) {
-		$catContainer.imagesLoaded( function() {
-			$catContainer.masonry("appended",items);
-		});
-	});
-
-	ias.extension(new IASSpinnerExtension());
-	//ias.extension(new IASNoneLeftExtension({html: '<div class="ias-noneleft" style="text-align:center"><p><em>You reached the end!</em></p></div>'}));
-	
 	// Чекбоксы
 	
 	$("input:checkbox").each(function() {
@@ -154,6 +158,7 @@ $(document).ready(function() {
 	});
 	
 	$(".filter-slider-range").each(function() {
+		var slider = $(this);
 		$(this).noUiSlider({
 			start: [$(this).data("start"), $(this).data("finish")],
 			connect: true,
@@ -163,6 +168,8 @@ $(document).ready(function() {
 			},
 			step: 1
 		});
+		
+		
 		
 		$(this).Link('lower').to($(this).parents(".filter-slider-wrapper").find(".slider-input-from"),null,{
 			to: parseInt
@@ -375,6 +382,24 @@ $(document).ready(function() {
 		}
 	});
 	
+	// Отслеживаем изменение полей фильтра и обновляем каталог
+	
+	var timer;
+	
+	$(".cat-filter input,.filter-slider-range").on("change",function() {
+		clearTimeout(timer);
+		timer = setTimeout(function() {
+			
+			// Обновляем каталог
+			
+			appendItems("../load/catalogue.js",true)
+			
+		}, 1500);
+		
+	})
+	
+	
+	
 	// Поиск метро
 	
 	$("#metro_search_input").on("keyup",function() {
@@ -430,13 +455,7 @@ $(document).ready(function() {
 	
 	// Поповеры в шапке
 	
-	$("html").on("mouseup", function(e) {
-    if(!$(e.target).parents(".popover").length) {
-			$(".popover").each(function(){
-				$("[aria-describedby='"+$(this).attr("id")+"']").popover("hide");
-			});
-    }
-	});
+	
 	
 	$(".menu-selector-trigger").popover({
 		trigger: "click",
@@ -573,6 +592,8 @@ $(document).ready(function() {
 			});
 		}
 	})
+	
+	
 	
 });
 
@@ -812,5 +833,208 @@ function pupMakeup() {
 	popup.css({
 		marginTop: pupTop
 	})
+	
+}
+
+function appendItems(url,clear) {
+  
+	// Если clear=true, каталог очищается перед показом новых элементов.
+	
+	if (clear) {
+		$(".catalogue").before("<div class='catalogue-loader catalogue-loader-before' />")
+	} else {
+		$(".catalogue").after("<div class='catalogue-loader catalogue-loader-after' />")
+	}
+	
+	var xhr = $.getJSON( url, function( data ) {
+		
+		var items = $();
+		
+		$.each( data, function( key, val ) {
+			
+			itemId = key;
+			
+			itemData = val;
+			
+			var itemModifiedDate = new Date(itemData.info.modified);
+
+			itemModifiedDateFormatted = itemModifiedDate.getDate() + "." + itemModifiedDate.getMonth() + "." + itemModifiedDate.getFullYear();
+			
+			var itemLanguages = "";
+			
+			for (i=0;i<itemData.languages.length;i++) {
+				itemLanguages += '<div class="cat-languages-item cat-languages-item-'+itemData.languages[i]+'">'+itemData.languages[i].charAt(0).toUpperCase() + itemData.languages[i].slice(1)+'</div>\
+				';
+			}
+			
+			var itemFeatures = "";
+			
+			for (i=0;i<itemData.feature.length;i++) {
+				if (itemData.feature[i] != "travel") {
+					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">'+itemData.feature[i].charAt(0).toUpperCase() + itemData.feature[i].slice(1)+'</div>\
+					';
+				} else {
+					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">Путешествует</div>\
+					';
+				}
+			}
+			
+			var itemComments = "";
+			
+			for (i=0;i<itemData.comments.length;i++) {
+				itemComments += '\
+				<div class="cat-comments-item">\
+					<div class="userpic">\
+						<img src="'+itemData.comments[i].img+'"/>\
+					</div>\
+					<div class="username">\
+						'+itemData.comments[i].usr+'\
+					</div>\
+					<div class="text">\
+						'+itemData.comments[i].txt+'\
+					</div>\
+				</div>\
+				';
+			}
+			
+			var item = '\
+				<div id="'+itemId+'" class="catalogue-item">\
+					<a href="/models/'+itemId+'" class="cat-pic" data-toggle="modal" data-target="#modelPopup">\
+						<img src="'+itemData.photo+'" />\
+						<div class="cat-price">\
+							'+itemData.price+'\
+						</div>\
+						<div class="cat-pic-hover">\
+							<div class="cat-pic-hover-button cat-pic-hover-button-info" role="button" data-toggle="popover">\
+								<div class="cat-pic-hover-ico cat-pic-hover-ico-info"></div>\
+								info\
+							</div>\
+							<div class="cat-pic-hover-button cat-pic-hover-button-follow">\
+								<div class="cat-pic-hover-ico cat-pic-hover-ico-follow"></div>\
+								follow\
+							</div>\
+						</div>\
+					</a>\
+					<div class="info-popover-content">\
+						<div class="popover-close info-popover-close"></div>\
+						<div class="clearfix">\
+							<div class="info-popover-header">\
+								<div class="info-popover-name">\
+									<a href="#">'+itemData.info.name+'</a>\
+								</div>\
+							</div>\
+							<a href="#" class="info-popover-data-item">\
+								<div class="ico ico-info-reviews"></div>Отзывов: '+itemData.info.reviews+'\
+							</a>\
+							<a href="#" class="info-popover-data-item">\
+								<div class="ico ico-info-comments"></div>Комментариев: '+itemData.info.comments+'\
+							</a>\
+							<a href="#" class="info-popover-data-item">\
+								<div class="ico ico-info-photos"></div>Фото: '+itemData.info.photos+'\
+							</a>\
+							<a href="#" class="info-popover-data-item">\
+								<div class="ico ico-info-videos"></div>Видео: '+itemData.info.videos+'\
+							</a>\
+							<div class="info-popover-date">\
+								Последнее обновление: '+itemModifiedDateFormatted+'\
+							</div>\
+						</div>\
+					</div>\
+					<div class="cat-descr">\
+						<div class="cat-data">\
+							<div class="clearfix">\
+								<div class="cat-age">\
+									Возраст: '+itemData.age+'\
+								</div>\
+								<div class="cat-rating">\
+									<div class="rating clearfix">\
+										<div class="rating-star'+((itemData.rating >= 1) ? " rating-star-act" : "")+'"></div>\
+										<div class="rating-star'+((itemData.rating >= 2) ? " rating-star-act" : "")+'"></div>\
+										<div class="rating-star'+((itemData.rating >= 3) ? " rating-star-act" : "")+'"></div>\
+										<div class="rating-star'+((itemData.rating >= 4) ? " rating-star-act" : "")+'"></div>\
+										<div class="rating-star'+((itemData.rating >= 5) ? " rating-star-act" : "")+'"></div>\
+									</div>\
+								</div>\
+							</div>\
+							<div class="clearfix">\
+								<div class="cat-employer">\
+									'+((itemData.agency.length) ? "<a href='/agencies/"+itemData.agency+"'>Агентство</a>" : "Инди")+'\
+								</div>\
+								<div class="cat-work-location">\
+									'+((itemData["location"].indexOf("out") >= 0) ? "<div class='cat-work-location-item cat-work-location-item-out'>Выезд</div>" : "")+'\
+									'+((itemData["location"].indexOf("in") >= 0) ? "<div class='cat-work-location-item cat-work-location-item-in'>Прием</div>" : "")+'\
+								</div>\
+							</div>\
+							<div class="clearfix">\
+								<div class="cat-model-type">\
+									'+itemData.section+'\
+								</div>\
+								<div class="cat-languages">\
+									'+
+								
+									itemLanguages
+									
+									+'\
+								</div>\
+							</div>\
+						</div>\
+						<div class="cat-features clearfix">\
+							'+
+								
+									itemFeatures
+									
+							+'\
+						</div>\
+						<div class="cat-comments">\
+							'+
+								
+									itemComments
+									
+							+'\
+							<div class="cat-comments-form">\
+								<div class="userpic">\
+									<img src="images/userpic-sm-dummy.png" />\
+								</div>\
+								<form action="">\
+									<div class="form-item">\
+										<label class="placeholder">Ваш комментарий</label>\
+										<textarea rows="1"></textarea>\
+										<input type="submit" value="Отправить"/>\
+									</div>\
+								</form>\
+							</div>\
+						</div>\
+					</div>\
+				</div>\
+			';
+			
+			items = items.add(item);
+			
+		});
+		
+		if (clear) {
+			$(".catalogue").masonry("remove",$(".catalogue-item"));
+			$(".catalogue").css({
+				"opacity": "0"
+			})
+		}
+		
+		
+		items.imagesLoaded( function() {
+			$(".catalogue-loader").remove();
+			$(".catalogue").append(items);
+			$(".catalogue").masonry("appended",items);
+			if (clear) {
+				$.when( $(".catalogue").masonry('layout') ).done(function(x) { 
+					$(".catalogue").animate({
+						opacity: 1
+					},500)
+				});
+			}
+		});
+	
+		
+		
+	});
 	
 }

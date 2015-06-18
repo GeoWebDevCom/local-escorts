@@ -998,6 +998,7 @@ input[type="checkbox"] {
 
 .catalogue {
   margin:0 auto;
+	opacity:0;
 }
 
 .catalogue-item {
@@ -1215,7 +1216,7 @@ input[type="checkbox"] {
 	float:left;
 	margin:0 2px 3px 2px;
 	font-size:10px;
-	line-height:20px;
+	line-height:21px;
 	text-transform:uppercase;
 	color:#fff;
 	padding:0 11px;
@@ -5699,4 +5700,29 @@ a.popover-activities-more:before {
   max-width:640px;
 	padding:0;
 	margin:4px 0 13px 0;
+}
+
+.catalogue-loader {
+	width:100px;
+  height:100px;
+	background:red;
+	position:absolute;
+	left:50%;
+	margin-left:-50px;
+	background:#383f4f url(../images/ajax-loader.gif) center center no-repeat;
+	border-radius:10px;
+	opacity:.75;
+	z-index:100;
+}
+
+.catalogue-wrapper {
+  position:relative;
+}
+
+.catalogue-loader-before {
+  top:50px;
+}
+
+.catalogue-loader-after {
+  bottom:50px;
 }
