@@ -61,7 +61,7 @@ $(document).ready(function() {
 		
 		// URL каталога для начальной загрузки
 		
-		var itemsUrl = "../load/catalogue.js";
+		var itemsUrl = "load/catalogue.js";
 		
 		// Если на странице нет элементов каталога, добавляем и выводим их.
 		// Второй параметр функции = true
@@ -392,7 +392,7 @@ $(document).ready(function() {
 			
 			// Обновляем каталог
 			
-			appendItems("../load/catalogue.js",true)
+			appendItems("load/catalogue.js",true)
 			
 		}, 1500);
 		
