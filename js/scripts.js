@@ -67,15 +67,26 @@ $(document).ready(function() {
 		// Второй параметр функции = true
 		
 		if (!$(".catalogue-item").length) {
-			appendItems(itemsUrl,true);
+			appendItems(itemsUrl,true,1);
 		}
 		
+		var page = 1;
+		
+		$(".cat-filter input,.filter-slider-range").on("change",function() {
+			page = 1
+		});
+		
 		$(window).scroll(function() {
+			
 			
 			scrollPos = $(window).scrollTop();
 			
 			if (scrollPos > ($(document).height() - $(window).height() - 200)) {
-				appendItems(itemsUrl,false);
+				
+				page++;
+				
+				appendItems($("form#filter-models").attr("action"),false,page);
+				
 			}
 			
 		})
@@ -289,9 +300,16 @@ $(document).ready(function() {
 		$(".cat-filter-ext").removeClass("cat-filter-ext-open");
 	});
 
-	$(".cat-filter-ext .button-cancel").on("click",function() {
+	$(".cat-filter-ext .button-cancel, .cat-filter-ext input:submit").on("click",function() {
 		$(".filter-more-trigger").removeClass("active");
 		$(".cat-filter-ext").removeClass("cat-filter-ext-open");
+	});
+	
+	$(".cat-filter-ext .button-cancel").on("click",function() {
+		$(".cat-filter-ext input:text").val("").trigger("blur");
+		$(".cat-filter-ext input:checkbox").attr("checked",false).trigger("change");
+		$(".cat-filter-ext select").val("").trigger("change");
+		$(".cat-filter-ext input:submit").click();
 	});
 	
 	$(".filter-selector-metro").on("click",function() {
@@ -303,9 +321,15 @@ $(document).ready(function() {
 		$(".cat-filter-metro").toggleClass("cat-filter-metro-open");
 	})
 	
-	$(".cat-filter-metro .button-cancel").on("click",function() {
+	$(".cat-filter-metro .button-cancel, .cat-filter-metro input:submit").on("click",function() {
 		$(".filter-selector-metro").removeClass("active");
 		$(".cat-filter-metro").removeClass("cat-filter-metro-open");
+	});
+	
+	$(".cat-filter-metro .button-cancel").on("click",function() {
+		$(".cat-filter-metro input:text").val("").trigger("blur");
+		$(".cat-filter-metro input:checkbox").attr("checked",false).trigger("change");
+		$(".cat-filter-metro input:submit").click();
 	});
 	
 	$(".filter-selector-sort").on("click",function() {
@@ -317,9 +341,14 @@ $(document).ready(function() {
 		$(".cat-filter-sort").toggleClass("cat-filter-sort-open");
 	})
 	
-	$(".cat-filter-sort .button-cancel").on("click",function() {
+	$(".cat-filter-sort .button-cancel, .cat-filter-sort input:submit").on("click",function() {
 		$(".filter-selector-sort").removeClass("active");
 		$(".cat-filter-sort").removeClass("cat-filter-sort-open");
+	});
+	
+	$(".cat-filter-sort .button-cancel").on("click",function() {
+		$(".cat-filter-sort input:radio").first().trigger("click").trigger("change");
+		$(".cat-filter-sort input:submit").click();
 	});
 	
 	// Маски текстовых полей
@@ -392,11 +421,23 @@ $(document).ready(function() {
 			
 			// Обновляем каталог
 			
-			appendItems("load/catalogue.js",true)
+			$("form#fiter-models").serialize();
+			
+			appendItems($("form#filter-models").attr("action"),true,1)
 			
 		}, 1500);
 		
-	})
+	});
+	
+	$(".cat-filter-metro input:submit, .cat-filter-sort input:submit, .cat-filter-ext input:submit").on("click",function() {
+			
+		$("form#fiter-models").serialize();
+		
+		appendItems($("form#filter-models").attr("action"),true,1)
+		
+		return false;
+		
+	});
 	
 	
 	
@@ -805,6 +846,12 @@ $.fn.customSelect = function() {
 						dropdown.fadeOut(150)
 				}
 			});
+			
+			select.on("change",function() {
+				paramSel.find(".sel-value").html(img + select.find("option[value='" + select.val() + "']").html());
+				dropdown.find("div").show().removeClass("selected").removeClass("hidden");
+				dropdown.find(".option[val='"+select.val()+"']").addClass("selected");
+			})
 		
 		}
 		
@@ -836,7 +883,7 @@ function pupMakeup() {
 	
 }
 
-function appendItems(url,clear) {
+function appendItems(url,clear,page) {
   
 	// Если clear=true, каталог очищается перед показом новых элементов.
 	
@@ -845,6 +892,10 @@ function appendItems(url,clear) {
 	} else {
 		$(".catalogue").after("<div class='catalogue-loader catalogue-loader-after' />")
 	}
+	
+	var url = url + "?page=" + page + "&t=" + parseInt(Math.random()*1000000000, 10);
+	
+	console.log(url)
 	
 	var xhr = $.getJSON( url, function( data ) {
 		
@@ -1012,7 +1063,7 @@ function appendItems(url,clear) {
 			
 		});
 		
-		if (clear) {
+		if (clear && $(".catalogue-item").length) {
 			$(".catalogue").masonry("remove",$(".catalogue-item"));
 			$(".catalogue").css({
 				"opacity": "0"
