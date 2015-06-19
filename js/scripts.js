@@ -921,11 +921,14 @@ function appendItems(url,clear,page) {
 			var itemFeatures = "";
 			
 			for (i=0;i<itemData.feature.length;i++) {
-				if (itemData.feature[i] != "travel") {
-					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">'+itemData.feature[i].charAt(0).toUpperCase() + itemData.feature[i].slice(1)+'</div>\
+				if (itemData.feature[i] == "travel") {
+					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">Путешествует</div>\
+					';
+				} else if (itemData.feature[i] == "top100") {
+					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">TOP 100</div>\
 					';
 				} else {
-					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">Путешествует</div>\
+					itemFeatures += '<div class="cat-feature cat-feature-'+itemData.feature[i]+'">'+itemData.feature[i].charAt(0).toUpperCase() + itemData.feature[i].slice(1)+'</div>\
 					';
 				}
 			}

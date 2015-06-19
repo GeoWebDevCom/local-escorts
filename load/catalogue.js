@@ -18,7 +18,7 @@
     "location" : ["in","out"],
     "section" : "Массаж",
     "languages" : ["ru","en"],
-    "feature" : ["new","video","pornstar","travel"],
+    "feature" : ["new","video","pornstar","travel","top100"],
     "comments" : [
       {
         "img" : "files/userpic-sm-2.jpg",
@@ -112,7 +112,7 @@
     "location" : ["in","out"],
     "section" : "Массаж",
     "languages" : ["ru","en"],
-    "feature" : ["new","video","pornstar","travel"],
+    "feature" : ["new","video","pornstar","travel","top100"],
     "comments" : [
       {
         "img" : "files/userpic-sm-2.jpg",
