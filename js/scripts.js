@@ -30,6 +30,46 @@ $(document).ready(function() {
 	
 	makeUp();
 	
+	// Выбор города
+	
+	$(".city-selector").on("click",function() {
+		if (!$(this).hasClass("active")) {
+			$(this).addClass("active");
+			$(".location-popup").css({
+				marginTop: - $(window).height() + 43,
+				marginBottom: $(window).height() - 43
+			}).show().animate({
+				marginTop: 0,
+				marginBottom: 0
+			},500);
+		} else {
+			$(this).removeClass("active");
+			$(".location-popup").css({
+				marginTop: 0,
+				marginBottom: 0
+			}).animate({
+				marginTop: - $(window).height() + 43,
+				marginBottom: $(window).height() - 43
+			},500,function() {
+				$(".location-popup").hide()
+			});
+		}
+		
+	});
+	
+	$(".location-popup .close").on("click",function() {
+		$(".city-selector").removeClass("active");
+		$(".location-popup").css({
+			marginTop: 0,
+			marginBottom: 0
+		}).animate({
+			marginTop: - $(window).height() + 43,
+			marginBottom: $(window).height() - 43
+		},500,function() {
+			$(".location-popup").hide()
+		});
+	});
+	
 	if ($(".catalogue").length) {
 		
 		// Вывод каталога, если есть статические карточки моделей на странице
@@ -588,8 +628,6 @@ $(document).ready(function() {
 		
 		pupMakeup();
 		
-		
-		
 	});
 	
 	// Клик по параметрам в каталоге переключает чекбоксы в фильтре
@@ -634,6 +672,17 @@ $(document).ready(function() {
 		}
 	})
 	
+	// замрываем поповеры при клике вне них
+	
+	$('body').on('click', function (e) {
+    $('[data-original-title]').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+	});
 	
 	
 });
